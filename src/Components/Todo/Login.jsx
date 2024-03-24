@@ -24,13 +24,13 @@ function Login() {
 
   return ( 
   <>
-   { value ? <Home/> : <div className="md:w-[100vw] md:h-[100vh] flex flex-wrap">
+   { value ? <Home/> : <div className="md:w-[100vw] md:h-[100vh] flex flex-wrap overflow-y-scroll">
       <div className="md:w-[50vw] w-[100vw] flex items-center justify-center flex-col">
         <div className="fixed md:top-14 top-9 left-9 md:left-14 md:w-[4vw] md:h-[4vh] w-[8vw] h-[8vh]">
           <img src={logo} alt="no img" />
         </div>
         <h1 className="text-4xl font-bold font-sans text-black">Login</h1>
-        <div className="md:w-[35vw] w-[55vw] pt-7">
+        <div className="md:w-[35vw] w-[65vw] pt-7">
           <p className="text-lg font-medium opacity-65 hover:opacity-50">
             Start organizing your tasks and managing your day effectively with
             our Todo List application. Log in to access your tasks from
