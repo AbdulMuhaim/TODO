@@ -24,7 +24,7 @@ function Login() {
 
   return ( 
   <>
-   { value ? <Home/> : <div className="w-[100vw] h-[100vh] flex flex-wrap">
+   { value ? <Home/> : <div className="md:w-[100vw] md:h-[100vh] flex flex-wrap">
       <div className="md:w-[50vw] w-[100vw] flex items-center justify-center flex-col">
         <div className="fixed md:top-14 top-9 left-9 md:left-14 md:w-[4vw] md:h-[4vh] w-[8vw] h-[8vh]">
           <img src={logo} alt="no img" />
@@ -57,7 +57,7 @@ function Login() {
       </div>
 
       <div
-        className="md:w-[50vw] w-[100vw] bg-red-900"
+        className="md:w-[50vw] w-[100vw]"
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
