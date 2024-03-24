@@ -24,8 +24,8 @@ function Login() {
 
   return ( 
   <>
-   { value ? <Home/> : <div className="md:w-[100vw] md:h-[100vh] flex flex-wrap overflow-y-scroll">
-      <div className="md:w-[50vw] w-[100vw] flex items-center justify-center flex-col">
+   { value ? <Home/> : <div className="md:w-[100vw] md:h-[100vh] h-auto w-auto flex flex-wrap overflow-scroll">
+      <div className="md:w-[50vw] w-[100vw] h-[50vh] flex items-center justify-center flex-col">
         <div className="fixed md:top-14 top-9 left-9 md:left-14 md:w-[4vw] md:h-[4vh] w-[8vw] h-[8vh]">
           <img src={logo} alt="no img" />
         </div>
@@ -57,13 +57,13 @@ function Login() {
       </div>
 
       <div
-        className="md:w-[50vw] w-[100vw]"
+        className="md:w-[50vw] w-[100vw] h-[50vh]"
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
-      ></div>
+      ><br /></div>
     </div> }
     </>
   );
