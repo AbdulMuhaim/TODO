@@ -30,7 +30,7 @@ function Login() {
           <img src={logo} alt="no img" />
         </div>
         <h1 className="text-4xl font-bold font-sans text-black">Login</h1>
-        <div className="w-[35vw] pt-7">
+        <div className="md:w-[35vw] w-[55vw] pt-7">
           <p className="text-lg font-medium opacity-65 hover:opacity-50">
             Start organizing your tasks and managing your day effectively with
             our Todo List application. Log in to access your tasks from
