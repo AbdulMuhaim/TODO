@@ -57,12 +57,13 @@ function Login() {
       </div>
 
       <div
-        className="md:w-1/2 w-full h-[100vh] overflow-hidden"
+        className="md:w-1/2 w-full h-[100vh]"
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "centre"
+          backgroundPosition: "centre",
+          overflow:"hidden"
         }}
       ><br />
       </div>

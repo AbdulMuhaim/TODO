@@ -1,5 +1,5 @@
 import logo from "../../../public/Screenshot 2024-03-22 174558.png";
-import { Button } from "antd";
+import { Button, notification } from "antd";
 import { MdDelete } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
 import { db } from "../../firebase";
@@ -29,6 +29,10 @@ function Home() {
   const [filteredData, setfilteredData] = useState([]);
   const userId = localStorage.getItem("email");
 
+  notification.config({
+    duration: 1, 
+  });
+
   const getData = async () => {
     try {
       if (!userId) {
@@ -54,35 +58,63 @@ function Home() {
   }, [update]);
 
   const createTodo = async () => {
-    await addDoc(todoLists, {
-      title: title,
-      description: description,
-      status: true,
-      favourite: false,
-      user: userId,
-      createdAt: serverTimestamp(),
-    });
-    setUpdate(!update);
-    setTitle("");
-    setDescription("");
+    try {
+      await addDoc(todoLists, {
+        title: title,
+        description: description,
+        status: true,
+        favourite: false,
+        user: userId,
+        createdAt: serverTimestamp(),
+      });
+      setUpdate(!update);
+      setTitle("");
+      setDescription("");
+      notification.success({ message: "todo created sucessfully" });
+    } catch (error) {
+      const errorMessage = typeof error === 'object' && error.message ? error.message : 'An error occurred';
+      notification.error({ message: errorMessage });
+    }
+    
   };
 
   const ChangeTodoStatus = async (id) => {
-    const updateVal = doc(db, "Todos", id);
-    await updateDoc(updateVal, { status: false });
-    setUpdate(!update);
+    try {
+      const updateVal = doc(db, "Todos", id);
+      await updateDoc(updateVal, { status: false });
+      setUpdate(!update);
+      notification.success({ message: "todo marked as completed" });
+    } catch (error) {
+      const errorMessage = typeof error === 'object' && error.message ? error.message : 'An error occurred';
+      notification.error({ message: errorMessage });
+    }
+
   };
 
   const deleteTodo = async (id) => {
-    const deleteVal = doc(db, "Todos", id);
-    await deleteDoc(deleteVal);
-    setUpdate(!update);
+    try {
+      const deleteVal = doc(db, "Todos", id);
+      await deleteDoc(deleteVal);
+      setUpdate(!update);
+      notification.success({ message: "todo deleted successfully" });
+    } catch (error) {
+      const errorMessage = typeof error === 'object' && error.message ? error.message : 'An error occurred';
+      notification.error({ message: errorMessage });
+    }
+
   };
 
   const addtoFavourite = async (id) => {
-    const updateVal = doc(db, "Todos", id);
-    await updateDoc(updateVal, { favourite: true });
-    setUpdate(!update);
+    try {
+      const updateVal = doc(db, "Todos", id);
+      await updateDoc(updateVal, { favourite: true });
+      setUpdate(!update);
+      notification.success({ message: "todo marked as favourite" });
+    } catch (error) {
+      const errorMessage = typeof error === 'object' && error.message ? error.message : 'An error occurred';
+      notification.error({ message: errorMessage });
+    }
+
   };
 
   const filteredTodos = (value) => {
@@ -102,28 +134,28 @@ function Home() {
 
   return (
     <>
-      <div className="p-10 flex gap-5 h-[100vh] flex-wrap">
+      <div className="p-10 flex gap-5 h-[100vh] flex-wrap md:flex-nowrap">
         <div className="w-[50vw] flex justify-center items-center flex-col">
           <div className="fixed top-10 left-10 md:w-[4vw] md:h-[4vh] w-[7vw] h-[7vh]">
             <img src={logo} alt="no img" />
           </div>
-          <div className="fixed right-12 top-6">
+          <div className="fixed right-4 md:right-12 top-6">
             <Button onClick={handleLogout} className="opacity-85">
               Logout
             </Button>
           </div>
 
           <div>
-            <h1 className="text-4xl pl-52 md:pl-0 font-bold font-sans text-black">Todo</h1>
+            <h1 className="text-4xl text-center pl-24 md:pl-0 font-bold font-sans text-black">Todo</h1>
           </div>
-          <div className="md:w-[35vw] w-[70vw] pt-7">
-            <p className="text-lg pl-52 md:pl-0 font-medium opacity-65 hover:opacity-50">
+          <div className="md:w-[35vw] w-[70vw] pt-7 ">
+            <p className="text-lg pl-24  md:pl-0 text-center font-medium opacity-65 hover:opacity-50">
               "Every journey begins with a single task. Embrace the process, and
               soon your 'to-do' will become 'done'."
             </p>
           </div>
 
-          <div className="pt-20 pl-52 md:pl-0">
+          <div className="pt-20 pl-24 md:pl-0">
             <div>
               <input
                 value={title}
