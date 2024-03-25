@@ -281,7 +281,7 @@ function Home() {
                 <img
                   src={illustration}
                   alt="no img"
-                  className="w-[27vw] h-[55vh] pl-20"
+                  className="w-[27vw] h-[55vh] pl-20 md:block hidden"
                 />
                 <p className="absolute right-4 bottom-8 whitespace-nowrap opacity-70">
                   Oops! It looks like there are no todos to show.
